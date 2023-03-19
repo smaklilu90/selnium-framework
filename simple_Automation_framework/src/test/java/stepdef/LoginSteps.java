@@ -117,5 +117,6 @@ public class LoginSteps {
        if (!message.contains("thank you")) {
     	   Assert.fail();
        }
+       driver.quit();
     }
 }
