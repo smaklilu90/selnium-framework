@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class LinkExtractor {
+
+    public static void main(String[] args) {
+        String inputText = "Your long string of text with href links like href=\"xxxx.example.com.xxx\" and other links.";
+
+        // Call the method to extract links
+        ArrayList<String> links = extractLinks(inputText);
+
+        // Print the extracted links
+        for (String link : links) {
+            System.out.println("Found link: " + link);
+        }
+    }
+
+    public static ArrayList<String> extractLinks(String text) {
+        ArrayList<String> extractedLinks = new ArrayList<>();
+
+        // Define the regular expression pattern
+        String regex = "href=\"([^\"]*example\\.com[^\"]*)\"";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+
+        // Find and add the links to the ArrayList
+        while (matcher.find()) {
+            String link = matcher.group(1);
+            extractedLinks.add(link);
+        }
+
+        return extractedLinks;
+    }
+}
